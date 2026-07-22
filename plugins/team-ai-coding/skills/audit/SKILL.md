@@ -20,7 +20,7 @@ disable-model-invocation: false
 1. 确认目标仓库，仅阅读相关项目规则与 Spec 文档。
 2. 检查任务路由：L0 可直接验证、L1 有短计划、L2 有 Spec 与明确人工批准门槛。
 3. 检查长期上下文：`openspec/project.md` 与可选 `openspec/roadmap.md` 目的清楚，且没有被当成自动日志。
-4. 检查 L2：有 change 位置、proposal/approval 边界、验证记录和归档约定。
+4. 检查 L2：有 change 位置、proposal/approval 边界、验证记录和归档约定；默认仓库 Owner 或受影响模块维护者的明确人工确认可构成批准。未配置额外审批人或渠道仅作为建议，不能单独判定为阻塞。
 5. 检查三端：Codex、Claude Code、Cursor 都指向同一项目规则，而非某一端的私有配置。
 6. 检查安全边界：没有强制工具、静默安装、规则自动替换或业务代码侵入。
 7. 对用户给出的具体任务，说明判定的 L0/L1/L2、证据、所需产物、审批点和验证期待。

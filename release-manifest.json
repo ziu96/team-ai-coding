@@ -1,13 +1,13 @@
 {
   "suite": "team-ai-coding",
   "distribution": "plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "releaseStatus": "preview",
   "marketplaceName": "team-ai-coding",
   "plugin": {
     "name": "team-ai-coding",
     "path": "plugins/team-ai-coding",
-    "sha256": "e6e1126d85263b3c09a39976ab7f312f58015473d5d7eb3cedd1d7538c66cb01"
+    "sha256": "a63a680cbf9ea64d060ffc9a9fb6daed6c4c261d5ca356c83e0cba6448f2eb1f"
   },
   "workflow": [
     "team-ai-coding:init",
@@ -28,11 +28,14 @@
   ],
   "cursorPlugin": {
     "path": "plugins/team-ai-coding/.cursor-plugin/plugin.json",
-    "marketplacePath": ".cursor-plugin/marketplace.json"
+    "marketplacePath": ".cursor-plugin/marketplace.json",
+    "rules": [
+      "plugins/team-ai-coding/rules/00-team-foundation.mdc"
+    ]
   },
   "template": {
     "canonicalPath": "templates/project",
-    "sha256": "91097a89029152fa40f1df9c1ab5fd6f579682357cc66cdcb1457644643cfcc3",
+    "sha256": "c4f97bcd44ce79e66f8f027684a4b84c51286b1f1e37da52da3e233281e5065d",
     "bundledIn": [
       "plugins/team-ai-coding/templates/project",
       ".cursor/templates/project"
@@ -42,12 +45,12 @@
     {
       "name": "init",
       "path": "plugins/team-ai-coding/skills/init",
-      "sha256": "559a7116838f0e3d9498ce2bd1762add5ae34568bf2e83c76466aed4c1080d4f"
+      "sha256": "e62010f85a0e1334d2a39f715b9d17ccc3bf4d0c0e5b1db4c80ad0b55be01b15"
     },
     {
       "name": "audit",
       "path": "plugins/team-ai-coding/skills/audit",
-      "sha256": "b7a8c519c310e5b7cabb56789dfe911cb5c0461d8ab52f32c3315f51e5fe06a3"
+      "sha256": "280f90ce4fb57d6c1277155955af49c879bbb4fca5a6603606ccd1259e51bed0"
     },
     {
       "name": "upgrade",
@@ -57,7 +60,7 @@
     {
       "name": "l2-change",
       "path": "plugins/team-ai-coding/skills/l2-change",
-      "sha256": "9bff9c1bc7dbc3a7c8ddba7f4278c5923ea0b21b451e9c5fde55da268a1b2bee"
+      "sha256": "f535b05b120ac4290b54bed283877299155b7ae400bb56edb0925536592b46f0"
     }
   ]
 }

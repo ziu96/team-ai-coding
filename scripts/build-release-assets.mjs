@@ -105,6 +105,9 @@ const version = (await text(resolve(root, "VERSION"))).trim();
 const templateSource = resolve(root, "templates/project");
 const pluginTemplate = resolve(root, "plugins/team-ai-coding/templates/project");
 const cursorTemplate = resolve(root, ".cursor/templates/project");
+const pluginPath = resolve(root, "plugins/team-ai-coding");
+const cursorRuleSource = resolve(templateSource, ".cursor/rules/00-team-foundation.mdc");
+const cursorPluginRule = resolve(pluginPath, "rules/00-team-foundation.mdc");
 const skillNames = ["init", "audit", "upgrade", "l2-change"];
 const cursorNames = {
   init: "team-ai-coding-init",
@@ -134,6 +137,12 @@ if (writeMode) {
     failures.push(".cursor/templates/project is not synchronized");
   }
 }
+
+const cursorRule = await text(cursorRuleSource);
+if (!/^---\r?\n[\s\S]*?alwaysApply:\s*true\s*\r?\n---/m.test(cursorRule)) {
+  failures.push("templates/project/.cursor/rules/00-team-foundation.mdc must be alwaysApply");
+}
+await writeOrCheck(cursorPluginRule, cursorRule, failures);
 
 const cursorSkillsRoots = [
   resolve(root, ".cursor/skills"),
@@ -194,7 +203,6 @@ if (cursorMarketplace.plugins?.[0]?.name !== "team-ai-coding" || cursorMarketpla
   failures.push("Cursor marketplace must point to the canonical plugin");
 }
 
-const pluginPath = resolve(root, "plugins/team-ai-coding");
 const releaseManifest = {
   suite: "team-ai-coding",
   distribution: "plugin",
@@ -211,7 +219,10 @@ const releaseManifest = {
   cursorSkills: skillNames.map((name) => cursorNames[name]),
   cursorPlugin: {
     path: "plugins/team-ai-coding/.cursor-plugin/plugin.json",
-    marketplacePath: ".cursor-plugin/marketplace.json"
+    marketplacePath: ".cursor-plugin/marketplace.json",
+    rules: [
+      "plugins/team-ai-coding/rules/00-team-foundation.mdc"
+    ]
   },
   template: {
     canonicalPath: "templates/project",

@@ -19,13 +19,29 @@ $team-ai-coding:init
 
 ## Claude Code
 
+1. 输入 `/plugin marketplace add`。在弹出的 **Enter marketplace source** 输入框中，**只填写来源**：
+
 ```text
-/plugin marketplace add ziu96/team-ai-coding
+https://github.com/ziu96/team-ai-coding.git
+```
+
+不要在该单行输入框中粘贴 `/plugin install` 或 `/reload-plugins`。
+
+2. Marketplace 添加成功后，单独输入：
+
+```text
 /plugin install team-ai-coding@team-ai-coding
+```
+
+选择 `user` 可跨业务仓库复用；仅测试当前仓库时才选择 `project`。
+
+3. 单独输入：
+
+```text
 /reload-plugins
 ```
 
-然后在目标业务仓库输入：
+4. 然后在目标业务仓库输入：
 
 ```text
 /team-ai-coding:init
@@ -40,7 +56,7 @@ $team-ai-coding:init
 - **Cursor Team / Enterprise**：管理员在 Dashboard → Plugins → Team Marketplaces 导入本仓库，并由根 `.cursor-plugin/marketplace.json` 解析插件。随后可按团队策略设置 Default Off、Default On 或 Required。
 - **Cursor 公共 Marketplace**：插件提交并通过 Cursor 审核后，成员在 **Customize → Plugins** 搜索 `Team AI Coding` 安装。
 
-安装完成后，在目标业务仓库的 Agent 对话中输入 `/`，选择 `/team-ai-coding-init`。
+安装完成后，Plugin 已携带一条始终应用的 L0/L1/L2 通用路由。在目标业务仓库的 Agent 对话中输入 `/`，选择 `/team-ai-coding-init`，才会为该项目创建完整、可版本管理的规则与 L2 模板。
 
 公开 GitHub 仓库不等于自动上架 Cursor Marketplace；在审核前，它不能被当作公共 Marketplace 安装地址。
 
@@ -52,7 +68,7 @@ $team-ai-coding:init
 
 ### 维护者本地验证
 
-维护者可将完整插件包复制到 `~/.cursor/plugins/local/team-ai-coding`，执行 **Developer: Reload Window**，然后在 **Customize → Plugins** 确认有 4 个 Skill。此步骤只用于发布前验证，不是团队成员的日常安装流程。
+维护者可将完整插件包复制到 `~/.cursor/plugins/local/team-ai-coding`，执行 **Developer: Reload Window**，然后在 **Customize → Plugins** 确认有 4 个 Skill，并在新 Agent 对话验证 L0/L1/L2 Router Rule 生效。此步骤只用于发布前验证，不是团队成员的日常安装流程。
 
 ## Init 会做什么
 
@@ -68,11 +84,11 @@ CLAUDE.md
 openspec/
 ```
 
-已有项目不会被静默覆盖。冲突会由项目负责人选择保留、合并或替换。
+已有项目不会被静默覆盖。冲突会由项目负责人选择保留、合并或替换；init 不得生成项目专属 `.cursor/rules/*.mdc` 或改写已有规则。
 
 ## Cursor 中如何确认 L0/L1/L2 已接入
 
-Cursor 官方支持项目根和子目录的 `AGENTS.md`；本基座同时写入 `.cursor/rules/00-team-foundation.mdc` 作为 Cursor 的显式、始终应用的薄入口。
+安装 Plugin 后，Cursor 已有一条通用、始终应用的 Router Rule，可立即按 L0/L1/L2 分级；它不写业务仓库，也不等于项目已经初始化。Cursor 官方支持项目根和子目录的 `AGENTS.md`；确认后的 init 再把 `.cursor/rules/00-team-foundation.mdc` 写入业务仓库，作为可版本管理的薄入口。
 
 完成确认后的 `init`，在业务仓库资源管理器中至少应看到：
 
@@ -83,7 +99,7 @@ AGENTS.md                              # 完整 L0/L1/L2 路由
 openspec/AGENTS.md                     # L2 的具体流程
 ```
 
-L0/L1/L2 不会显示在 Cursor Plugin 面板中，也不会因为“安装插件”而自动写进业务仓库。`init` 在展示计划后，只有得到明确写入确认才会创建这些文件；若上述路径缺失，表示仍处于预览、冲突待处理或未接入状态。
+L0/L1/L2 不会以“项目文件已生成”的形式显示在 Cursor Plugin 面板中。`init` 在展示固定模板计划后，只有得到明确写入确认才会创建上述项目文件；若上述路径缺失，表示项目仍处于预览、冲突待处理或未接入状态。
 
 ## 之后的日常使用
 

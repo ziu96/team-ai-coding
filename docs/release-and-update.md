@@ -47,7 +47,7 @@ node scripts/build-release-assets.mjs --write
 node scripts/build-release-assets.mjs --check
 ```
 
-`--write` 只同步本仓库受管的发布镜像；发布前仍应人工审阅 diff、更新 `VERSION` 与 Changelog。Cursor 适配发生变化时，还应在本机将插件加载到 Cursor、确认 4 个 Skills 出现并至少执行一次无写入的 `audit`。之后再提交、创建 Git tag，并根据分发方式提交 Cursor 公共审核或导入 Team Marketplace。V1 不配置 GitHub Actions、CI Gate 或业务仓库门禁。
+`--write` 只同步本仓库受管的发布镜像；发布前仍应人工审阅 diff、更新 `VERSION` 与 Changelog。Cursor 适配发生变化时，还应在本机将插件加载到 Cursor、确认 4 个 Skills 与 1 条始终应用的 Router Rule 生效，并至少执行一次无写入的 `audit`。之后再提交、创建 Git tag，并根据分发方式提交 Cursor 公共审核或导入 Team Marketplace。V1 不配置 GitHub Actions、CI Gate 或业务仓库门禁。
 
 ## 版本变更的判断
 
