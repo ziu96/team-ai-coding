@@ -16,7 +16,7 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 
 ## 安装
 
-计划发布地址：`https://github.com/ziu96/team-ai-coding`。成员只安装自己使用的 App；不需要三端都装。
+发布地址：[ziu96/team-ai-coding](https://github.com/ziu96/team-ai-coding)。成员只安装自己使用的 App；不需要三端都装。
 
 | App | 安装后的一次初始化命令 |
 | --- | --- |

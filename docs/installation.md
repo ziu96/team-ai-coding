@@ -2,7 +2,7 @@
 
 ## 前提
 
-计划发布地址为 `https://github.com/ziu96/team-ai-coding`。成员只需安装自己使用的 App 入口，不要求安装三种。
+发布地址为 [ziu96/team-ai-coding](https://github.com/ziu96/team-ai-coding)。成员只需安装自己使用的 App 入口，不要求安装三种。
 
 ## Codex
 
