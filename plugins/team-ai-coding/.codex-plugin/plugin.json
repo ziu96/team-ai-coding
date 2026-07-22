@@ -1,0 +1,26 @@
+{
+  "name": "team-ai-coding",
+  "version": "0.1.0",
+  "description": "团队 AI Coding 基座：初始化、审计、升级与 L2 Spec 辅助。",
+  "author": {
+    "name": "Mo AI Coding"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Team AI Coding",
+    "shortDescription": "为项目接入一致的 AI Coding 质量路径。",
+    "longDescription": "提供一次初始化、规则审计、可确认升级和 L2 Spec 起草；不包含 Runtime、MCP、hooks 或全局 CLI。",
+    "developerName": "Mo AI Coding",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "使用 $team-ai-coding:init 初始化当前项目的团队 AI Coding 基座。",
+      "使用 $team-ai-coding:audit 检查当前项目的基座接入状态。",
+      "使用 $team-ai-coding:l2-change 为高风险改动起草 Spec。"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "suite": "team-ai-coding",
+  "distribution": "plugin",
+  "version": "0.1.0",
+  "releaseStatus": "unreleased",
+  "marketplaceName": "mo-ai-coding",
+  "plugin": {
+    "name": "team-ai-coding",
+    "path": "plugins/team-ai-coding",
+    "sha256": "93280a965d1a0edf7e3fcf41aac8c17ab17ebf9dd7909d491527ba3afff8de11"
+  },
+  "workflow": [
+    "team-ai-coding:init",
+    "team-ai-coding:audit",
+    "team-ai-coding:upgrade",
+    "team-ai-coding:l2-change"
+  ],
+  "supportedHosts": [
+    "codex",
+    "claude-code",
+    "cursor"
+  ],
+  "cursorSkills": [
+    "team-ai-coding-init",
+    "team-ai-coding-audit",
+    "team-ai-coding-upgrade",
+    "team-ai-coding-l2-change"
+  ],
+  "template": {
+    "canonicalPath": "templates/project",
+    "sha256": "f65baf9d5a7f2ecadcb84b10b381dd689db543e2f91ca86d18fa41ea7027abf2",
+    "bundledIn": [
+      "plugins/team-ai-coding/templates/project",
+      ".cursor/templates/project"
+    ]
+  },
+  "components": [
+    {
+      "name": "init",
+      "path": "plugins/team-ai-coding/skills/init",
+      "sha256": "1575d254669efcb0f48729284f63a28e0ec7895418264253edaab68423bd84fe"
+    },
+    {
+      "name": "audit",
+      "path": "plugins/team-ai-coding/skills/audit",
+      "sha256": "b7a8c519c310e5b7cabb56789dfe911cb5c0461d8ab52f32c3315f51e5fe06a3"
+    },
+    {
+      "name": "upgrade",
+      "path": "plugins/team-ai-coding/skills/upgrade",
+      "sha256": "c0be2e8cc4d3fb252a2ea948734ad24abd62361e5def55103776dabc9f5b555d"
+    },
+    {
+      "name": "l2-change",
+      "path": "plugins/team-ai-coding/skills/l2-change",
+      "sha256": "9bff9c1bc7dbc3a7c8ddba7f4278c5923ea0b21b451e9c5fde55da268a1b2bee"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "mo-ai-coding",
+  "interface": {
+    "displayName": "Mo Ai Coding"
+  },
+  "plugins": [
+    {
+      "name": "team-ai-coding",
+      "source": {
+        "source": "local",
+        "path": "./plugins/team-ai-coding"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
