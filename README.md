@@ -16,7 +16,7 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 
 ## 安装
 
-本仓库发布到 GitHub 后，将下面的 `<owner>/<repo>` 替换为真实仓库，例如未来的 `mo-ai-coding/team-ai-coding-base`。成员只安装自己使用的 App；不需要三端都装。
+计划发布地址：`https://github.com/ziu96/mo-ai-coding`。成员只安装自己使用的 App；不需要三端都装。
 
 | App | 安装后的一次初始化命令 |
 | --- | --- |
@@ -27,7 +27,7 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 ### Codex
 
 ```bash
-codex plugin marketplace add <owner>/<repo>
+codex plugin marketplace add ziu96/mo-ai-coding
 codex plugin add team-ai-coding@mo-ai-coding
 ```
 
@@ -42,7 +42,7 @@ $team-ai-coding:init
 在 Claude Code 中输入：
 
 ```text
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add ziu96/mo-ai-coding
 /plugin install team-ai-coding@mo-ai-coding
 /reload-plugins
 ```

@@ -2,12 +2,12 @@
 
 ## 前提
 
-发布仓库需要先托管到团队 GitHub。以下的 `<owner>/<repo>` 在发布后替换为真实地址；成员只需安装自己使用的 App 入口，不要求安装三种。
+计划发布地址为 `https://github.com/ziu96/mo-ai-coding`。成员只需安装自己使用的 App 入口，不要求安装三种。
 
 ## Codex
 
 ```bash
-codex plugin marketplace add <owner>/<repo>
+codex plugin marketplace add ziu96/mo-ai-coding
 codex plugin add team-ai-coding@mo-ai-coding
 ```
 
@@ -20,7 +20,7 @@ $team-ai-coding:init
 ## Claude Code
 
 ```text
-/plugin marketplace add <owner>/<repo>
+/plugin marketplace add ziu96/mo-ai-coding
 /plugin install team-ai-coding@mo-ai-coding
 /reload-plugins
 ```
