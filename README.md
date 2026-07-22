@@ -16,7 +16,7 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 
 ## 安装
 
-计划发布地址：`https://github.com/ziu96/mo-ai-coding`。成员只安装自己使用的 App；不需要三端都装。
+计划发布地址：`https://github.com/ziu96/team-ai-coding`。成员只安装自己使用的 App；不需要三端都装。
 
 | App | 安装后的一次初始化命令 |
 | --- | --- |
@@ -27,8 +27,8 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 ### Codex
 
 ```bash
-codex plugin marketplace add ziu96/mo-ai-coding
-codex plugin add team-ai-coding@mo-ai-coding
+codex plugin marketplace add ziu96/team-ai-coding
+codex plugin add team-ai-coding@team-ai-coding
 ```
 
 在目标业务仓库中新建一个 Codex 任务，然后输入：
@@ -42,8 +42,8 @@ $team-ai-coding:init
 在 Claude Code 中输入：
 
 ```text
-/plugin marketplace add ziu96/mo-ai-coding
-/plugin install team-ai-coding@mo-ai-coding
+/plugin marketplace add ziu96/team-ai-coding
+/plugin install team-ai-coding@team-ai-coding
 /reload-plugins
 ```
 
@@ -104,8 +104,8 @@ plugins/team-ai-coding/             # Codex + Claude Code 共用的 Canonical Pl
 
 插件更新只更新辅助工作流，不会静默改业务仓库中的规则。已有项目要升级基座时，使用 `upgrade` 先生成 diff、人工确认后再写入。
 
-- Codex：`codex plugin marketplace upgrade mo-ai-coding`
-- Claude Code：`/plugin marketplace update mo-ai-coding`，再按提示更新插件
+- Codex：`codex plugin marketplace upgrade team-ai-coding`
+- Claude Code：`/plugin marketplace update team-ai-coding`，再按提示更新插件
 - Cursor：更新 Remote Rule 后使用 `/team-ai-coding-upgrade` 审阅项目规则差异
 
 不包含：Runtime、制品安装器、强制全局 CLI、自动安装 Skill/MCP、hooks、CI/GitHub Gate 或对成员个人工具的限制。

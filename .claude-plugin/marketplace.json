@@ -1,8 +1,8 @@
 {
-  "name": "mo-ai-coding",
+  "name": "team-ai-coding",
   "description": "Team AI Coding Base 的内部插件市场。",
   "owner": {
-    "name": "Mo AI Coding"
+    "name": "Ziu"
   },
   "metadata": {
     "version": "0.1.0",
@@ -15,7 +15,7 @@
       "description": "初始化、审计、升级和 L2 Spec 起草的 Markdown 工作流。",
       "version": "0.1.0",
       "author": {
-        "name": "Mo AI Coding"
+        "name": "Ziu"
       },
       "license": "UNLICENSED",
       "category": "development",

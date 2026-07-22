@@ -2,13 +2,13 @@
 
 ## 前提
 
-计划发布地址为 `https://github.com/ziu96/mo-ai-coding`。成员只需安装自己使用的 App 入口，不要求安装三种。
+计划发布地址为 `https://github.com/ziu96/team-ai-coding`。成员只需安装自己使用的 App 入口，不要求安装三种。
 
 ## Codex
 
 ```bash
-codex plugin marketplace add ziu96/mo-ai-coding
-codex plugin add team-ai-coding@mo-ai-coding
+codex plugin marketplace add ziu96/team-ai-coding
+codex plugin add team-ai-coding@team-ai-coding
 ```
 
 在目标业务仓库的新任务中输入：
@@ -20,8 +20,8 @@ $team-ai-coding:init
 ## Claude Code
 
 ```text
-/plugin marketplace add ziu96/mo-ai-coding
-/plugin install team-ai-coding@mo-ai-coding
+/plugin marketplace add ziu96/team-ai-coding
+/plugin install team-ai-coding@team-ai-coding
 /reload-plugins
 ```
 

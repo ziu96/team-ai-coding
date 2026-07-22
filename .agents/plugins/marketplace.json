@@ -1,7 +1,7 @@
 {
-  "name": "mo-ai-coding",
+  "name": "team-ai-coding",
   "interface": {
-    "displayName": "Mo Ai Coding"
+    "displayName": "Team AI Coding"
   },
   "plugins": [
     {

@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "description": "团队 AI Coding 基座：初始化、审计、升级与 L2 Spec 辅助。",
   "author": {
-    "name": "Mo AI Coding"
+    "name": "Ziu"
   },
-  "homepage": "https://github.com/ziu96/mo-ai-coding",
-  "repository": "https://github.com/ziu96/mo-ai-coding",
+  "homepage": "https://github.com/ziu96/team-ai-coding",
+  "repository": "https://github.com/ziu96/team-ai-coding",
   "skills": "./skills/",
   "interface": {
     "displayName": "Team AI Coding",
     "shortDescription": "为项目接入一致的 AI Coding 质量路径。",
     "longDescription": "提供一次初始化、规则审计、可确认升级和 L2 Spec 起草；不包含 Runtime、MCP、hooks 或全局 CLI。",
-    "developerName": "Mo AI Coding",
+    "developerName": "Ziu",
     "category": "Productivity",
     "capabilities": [
       "Read",

@@ -180,7 +180,7 @@ const releaseManifest = {
   distribution: "plugin",
   version,
   releaseStatus: "unreleased",
-  marketplaceName: "mo-ai-coding",
+  marketplaceName: "team-ai-coding",
   plugin: {
     name: "team-ai-coding",
     path: "plugins/team-ai-coding",

@@ -3,11 +3,11 @@
   "distribution": "plugin",
   "version": "0.1.0",
   "releaseStatus": "unreleased",
-  "marketplaceName": "mo-ai-coding",
+  "marketplaceName": "team-ai-coding",
   "plugin": {
     "name": "team-ai-coding",
     "path": "plugins/team-ai-coding",
-    "sha256": "1ac0423cdacaa6e035d36d5f9916798c6ca0e3f0a30114fbdd4d7ce178f9aa38"
+    "sha256": "a019c4e61d966d168ba2cc02b82a1520940d5a594ba0bf8941fa9f87e4ef8ec8"
   },
   "workflow": [
     "team-ai-coding:init",
