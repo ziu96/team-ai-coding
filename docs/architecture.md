@@ -11,7 +11,7 @@
 | 项目规则 | 业务仓库根目录 | 规定阅读顺序、L0/L1/L2 路由、审批点和完成标准。它是三端共同的事实来源。 |
 | 项目上下文 | `openspec/project.md`、`openspec/roadmap.md` | 保存长期事实、架构约束、当前优先级与已知风险；只在确有事实变化时更新。 |
 | L2 变更档案 | `openspec/changes/` 与 `openspec/specs/` | 保存高影响变更的提案、设计、任务、验收与归档结果。 |
-| App 适配层 | `CLAUDE.md`、`.cursor/rules/`、Codex 插件/Skill | 将同一套项目规则以各 App 能识别的形式暴露出来；不重新定义业务规则。 |
+| App 适配层 | `CLAUDE.md`、`.cursor/rules/`、Codex / Claude Code / Cursor Plugin | 将同一套项目规则以各 App 能识别的形式暴露出来；Plugin 只负责分发与引导，不重新定义业务规则。 |
 
 业务团队可以额外维护一个扩展清单，列出推荐的领域 Skill、MCP 或工具说明。它只提供发现入口，不自动安装、启用、调用或授权任何外部能力。
 

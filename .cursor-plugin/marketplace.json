@@ -1,0 +1,19 @@
+{
+  "name": "team-ai-coding",
+  "displayName": "Team AI Coding",
+  "owner": {
+    "name": "Ziu"
+  },
+  "metadata": {
+    "description": "团队 AI Coding 基座的 Cursor Marketplace 入口。",
+    "version": "0.2.0",
+    "pluginRoot": "plugins"
+  },
+  "plugins": [
+    {
+      "name": "team-ai-coding",
+      "source": "team-ai-coding",
+      "description": "初始化、审计、升级与 L2 Spec 辅助。"
+    }
+  ]
+}

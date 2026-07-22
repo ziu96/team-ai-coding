@@ -22,7 +22,7 @@ L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 Ope
 | --- | --- |
 | Codex | `$team-ai-coding:init` |
 | Claude Code | `/team-ai-coding:init` |
-| Cursor | `/team-ai-coding-init` |
+| Cursor | 安装 Team AI Coding Plugin 后执行 `/team-ai-coding-init` |
 
 ### Codex
 
@@ -55,15 +55,19 @@ $team-ai-coding:init
 
 ### Cursor
 
-1. 打开 **Customize → Rules**，选择 **Add Rule → Remote Rule (GitHub)**。
-2. 填入本基座的 GitHub 仓库地址。
-3. 在 Agent 对话输入 `/`，选择 `/team-ai-coding-init`。
+本仓库同时提供官方 Cursor Plugin 包和兼容用的 Remote Rule 镜像。**Plugin 是正式主路径**；项目内 `AGENTS.md`、`.cursor/rules/` 与 `openspec/` 仍是实际业务约束的唯一事实来源。
 
-Cursor 从发布仓库根目录的 `.cursor/skills/` 发现这些 Skill。
+1. **Cursor Team / Enterprise**：由管理员在 Dashboard → Plugins 中导入本仓库的 `.cursor-plugin/marketplace.json`，再选择安装模式。成员会在 **Customize → Plugins** 看到 `Team AI Coding`。
+2. **Cursor 公共 Marketplace**：在 Cursor 审核上架后，成员直接在 **Customize → Plugins** 搜索并安装 `Team AI Coding`。
+3. 安装后在 Agent 对话输入 `/`，选择 `/team-ai-coding-init`。
+
+公开 GitHub 仓库不会自动出现在 Cursor 公共 Marketplace；公开分发仍需要 Cursor 审核。若团队暂时没有 Team Marketplace 且插件尚未上架，可在 **Customize → Rules** 使用 GitHub Remote Rule；根 `.cursor/skills/` 会继续提供同名 Skill，但它只是兼容兜底，不是主分发方式。
 
 ## 一次初始化与日常使用
 
 `init` 会先检查目标仓库已有的 `AGENTS.md`、`CLAUDE.md`、`.cursor/rules/` 和 `openspec/`，展示新增/冲突的文件；只有确认后才写入。它不会改业务代码、安装依赖、限制个人 Skill/MCP，或覆盖已有规则。
+
+在 Cursor 中，L0/L1/L2 的完整规则位于项目根 `AGENTS.md`；`.cursor/rules/00-team-foundation.mdc` 同时提供始终应用的关键路由摘要。它们不会显示在 Plugin 面板中；若 init 后这两个文件不存在，说明尚未完成确认后的项目接入。
 
 初始化成功后，业务仓库将拥有：
 
@@ -87,15 +91,18 @@ templates/project/                 # 唯一的项目规则模板
 ├── .ai-team/                      # 版本与可选扩展声明
 └── openspec/                      # L2 Spec、项目事实、路线图
 
-plugins/team-ai-coding/             # Codex + Claude Code 共用的 Canonical Plugin
+plugins/team-ai-coding/             # 三端共用的 Canonical Plugin
 ├── .codex-plugin/plugin.json
 ├── .claude-plugin/plugin.json
-├── skills/                         # init / audit / upgrade / l2-change
+├── .cursor-plugin/plugin.json
+├── skills/                         # Codex / Claude Code 的 Canonical Skills
+├── cursor-skills/                  # 生成的 Cursor Plugin Skills
 └── templates/project/              # 随发布包携带的模板快照
 
 .agents/plugins/marketplace.json    # Codex Marketplace 入口
 .claude-plugin/marketplace.json     # Claude Code Marketplace 入口
-.cursor/skills/                     # 从 Canonical Skills 生成的 Cursor 原生镜像
+.cursor-plugin/marketplace.json     # Cursor Team Marketplace 入口
+.cursor/skills/                     # 兼容用的 Cursor Remote Rule 镜像
 ```
 
 项目内规则才是唯一事实源。三端插件只负责一次初始化、审计和升级体验，不替代项目规则，也不会静默覆盖它们。
@@ -106,7 +113,7 @@ plugins/team-ai-coding/             # Codex + Claude Code 共用的 Canonical Pl
 
 - Codex：`codex plugin marketplace upgrade team-ai-coding`
 - Claude Code：`/plugin marketplace update team-ai-coding`，再按提示更新插件
-- Cursor：更新 Remote Rule 后使用 `/team-ai-coding-upgrade` 审阅项目规则差异
+- Cursor：在 **Customize → Plugins** 按 Marketplace 的更新机制更新插件；若仍使用兼容路径，则先更新 Remote Rule。两种情况下均使用 `/team-ai-coding-upgrade` 审阅项目规则差异。
 
 不包含：Runtime、制品安装器、强制全局 CLI、自动安装 Skill/MCP、hooks、CI/GitHub Gate 或对成员个人工具的限制。
 
@@ -114,4 +121,4 @@ plugins/team-ai-coding/             # Codex + Claude Code 共用的 Canonical Pl
 
 ## 当前状态
 
-这是 V1 基座实现。发布前应先在 Garden Helper 这类 PRD/原型阶段仓库执行一次初始化和 L0/L1/L2 路由演练，再决定是否需要把官方 OpenSpec CLI 作为维护者可选校验工具。
+当前版本为 `0.2.0`，发布状态为 preview：Cursor Plugin 已完成本机加载与只读 audit 调用验证；公共 Cursor Marketplace 尚待提交与审核。发布前仍应在 Garden Helper 这类 PRD/原型阶段仓库执行一次初始化和 L0/L1/L2 路由演练，再决定是否需要把官方 OpenSpec CLI 作为维护者可选校验工具。

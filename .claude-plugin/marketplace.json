@@ -5,7 +5,7 @@
     "name": "Ziu"
   },
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "跨 Codex、Claude Code、Cursor 的轻量团队 AI Coding 基座。"
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "team-ai-coding",
       "source": "./plugins/team-ai-coding",
       "description": "初始化、审计、升级和 L2 Spec 起草的 Markdown 工作流。",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Ziu"
       },

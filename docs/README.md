@@ -1,6 +1,6 @@
 # 文档索引
 
-这是一个面向团队的 AI Coding 基座：把稳定的任务路由、上下文与变更留痕放进业务仓库，让 Codex、Claude Code 与 Cursor 对同一项目遵循同一套高质量默认路径。
+这是一个面向团队的 AI Coding 基座：把稳定的任务路由、上下文与变更留痕放进业务仓库，让 Codex、Claude Code 与 Cursor 对同一项目遵循同一套高质量默认路径。Cursor 以官方 Plugin 作为主分发，GitHub Remote Rule 仅作未上架或无 Team Marketplace 时的兼容兜底。
 
 - [架构与边界](architecture.md)：基座由什么组成，以及明确不做什么。
 - [安装与一次初始化](installation.md)：三端安装、一次 init 与日常使用方式。

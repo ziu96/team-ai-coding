@@ -9,9 +9,12 @@
 - [OpenSpec：命令与工作流说明](https://github.com/Fission-AI/OpenSpec/blob/main/docs/commands.md)
 - [Claude Code：Plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
 - [Claude Code：Plugins reference](https://code.claude.com/docs/en/plugins-reference)
-- [Cursor：Rules](https://docs.cursor.com/context/rules-for-ai)
+- [Cursor：Rules 与 AGENTS.md](https://cursor.com/docs/rules)
 - [Cursor：Skills](https://cursor.com/docs/skills)
+- [Cursor：Plugins](https://cursor.com/docs/plugins)
+- [Cursor：Plugins reference](https://cursor.com/docs/reference/plugins)
+- [Cursor：Marketplace publish](https://cursor.com/marketplace/publish)
 
 ## 目录结构参考
 
-- [hccnm/software-testing](https://github.com/hccnm/software-testing)：借鉴其 Canonical plugin、Codex/Claude marketplace、根 `.cursor/skills`、版本与发布清单结构；不引入其 Python Runtime、vendor、测试协议或 CI 门禁。
+- [hccnm/software-testing](https://github.com/hccnm/software-testing)：借鉴其 Canonical plugin、Codex/Claude marketplace、版本与发布清单结构；Cursor 现以官方 Plugin 为主，根 `.cursor/skills` 仅保留为兼容镜像；不引入其 Python Runtime、vendor、测试协议或 CI 门禁。

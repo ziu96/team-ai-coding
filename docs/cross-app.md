@@ -13,18 +13,18 @@
 | --- | --- | --- | --- |
 | 项目级共同规则 | 根目录规则文件 | 根目录规则文件与 `CLAUDE.md` 适配 | 根目录规则文件；需要时由 `.cursor/rules/` 映射 |
 | L2 文档 | 直接读写 `openspec/` | 直接读写 `openspec/` | 直接读写 `openspec/` |
-| 工作流辅助 | `team-ai-coding:*` | `team-ai-coding:*` | 根 `.cursor/skills/` 的 `team-ai-coding-*` |
+| 工作流辅助 | `team-ai-coding:*` | `team-ai-coding:*` | Cursor Plugin 的 `/team-ai-coding-*`；Remote Rule 镜像仅作兼容兜底 |
 | 业务事实来源 | 业务仓库，不是个人配置 | 业务仓库，不是个人配置 | 业务仓库，不是个人配置 |
 
 适配层只做两件事：让对应 App 找到核心规则，并提供可选的高频工作流入口。它不能替代项目规则，也不能绕过 L2 的审批点。
 
-发布仓库采用一个 Canonical Plugin：`plugins/team-ai-coding/` 同时承载 Codex 与 Claude Code manifest 和同一套 Skills。Cursor Skill 是从这套 Canonical Skills 生成到根 `.cursor/skills/` 的镜像，避免三套文案漂移。
+发布仓库采用一个 Canonical Plugin：`plugins/team-ai-coding/` 同时承载 Codex、Claude Code 与 Cursor manifest，以及同一套源 Skills。发布脚本从源 Skills 生成 Cursor Plugin 内的 `cursor-skills/`，并同步生成根 `.cursor/skills/` 兼容镜像，避免三套文案漂移。
 
 ## 为什么项目规则仍是核心
 
 插件适合分发可复用的引导和快捷入口；项目规则适合承载与特定仓库绑定的事实。把 L0/L1/L2、项目上下文与变更档案放在仓库中，才能让未安装插件的成员、代码评审者和不同 App 看到相同的依据。
 
-Cursor 的项目规则与根目录 `AGENTS.md` 均可作为项目级指令来源；Claude Code 与 Codex 则通过各自的规则/Skill 适配读取同一事实。实现适配时不得假设某一端会自动读取另一端私有格式。
+Cursor Plugin 负责分发和显式工作流入口；Cursor 的项目规则与根目录 `AGENTS.md` 才是项目级指令来源。Claude Code 与 Codex 则通过各自的规则/Skill 适配读取同一事实。实现适配时不得假设某一端会自动读取另一端私有格式。
 
 ## 不管理的内容
 

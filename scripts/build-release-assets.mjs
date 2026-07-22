@@ -135,37 +135,52 @@ if (writeMode) {
   }
 }
 
-const cursorSkillsRoot = resolve(root, ".cursor/skills");
+const cursorSkillsRoots = [
+  resolve(root, ".cursor/skills"),
+  resolve(root, "plugins/team-ai-coding/cursor-skills")
+];
 const expectedCursorDirectories = new Set(Object.values(cursorNames));
 
-if (writeMode) {
-  await mkdir(cursorSkillsRoot, { recursive: true });
-  for (const entry of await readdir(cursorSkillsRoot, { withFileTypes: true })) {
-    if (entry.isDirectory() && entry.name.startsWith("team-ai-coding-") && !expectedCursorDirectories.has(entry.name)) {
-      await rm(resolve(cursorSkillsRoot, entry.name), { recursive: true, force: true });
+for (const cursorSkillsRoot of cursorSkillsRoots) {
+  if (writeMode) {
+    await mkdir(cursorSkillsRoot, { recursive: true });
+    for (const entry of await readdir(cursorSkillsRoot, { withFileTypes: true })) {
+      if (entry.isDirectory() && entry.name.startsWith("team-ai-coding-") && !expectedCursorDirectories.has(entry.name)) {
+        await rm(resolve(cursorSkillsRoot, entry.name), { recursive: true, force: true });
+      }
     }
-  }
-} else {
-  for (const entry of await readdir(cursorSkillsRoot, { withFileTypes: true })) {
-    if (entry.isDirectory() && entry.name.startsWith("team-ai-coding-") && !expectedCursorDirectories.has(entry.name)) {
-      failures.push(".cursor/skills/" + entry.name + " is a stale generated Skill");
+  } else {
+    try {
+      for (const entry of await readdir(cursorSkillsRoot, { withFileTypes: true })) {
+        if (entry.isDirectory() && entry.name.startsWith("team-ai-coding-") && !expectedCursorDirectories.has(entry.name)) {
+          failures.push(relative(root, cursorSkillsRoot) + "/" + entry.name + " is a stale generated Skill");
+        }
+      }
+    } catch {
+      failures.push(relative(root, cursorSkillsRoot) + " is missing");
     }
   }
 }
 
 for (const name of skillNames) {
   const source = await text(resolve(root, "plugins/team-ai-coding/skills", name, "SKILL.md"));
-  const cursorDirectory = resolve(root, ".cursor/skills", cursorNames[name]);
-  await writeOrCheck(resolve(cursorDirectory, "SKILL.md"), cursorSkill(source, cursorNames[name]), failures);
-  await writeOrCheck(resolve(cursorDirectory, "VERSION"), version + "\n", failures);
+  for (const cursorSkillsRoot of cursorSkillsRoots) {
+    const cursorDirectory = resolve(cursorSkillsRoot, cursorNames[name]);
+    await writeOrCheck(resolve(cursorDirectory, "SKILL.md"), cursorSkill(source, cursorNames[name]), failures);
+    await writeOrCheck(resolve(cursorDirectory, "VERSION"), version + "\n", failures);
+  }
 }
 
 const codexManifest = JSON.parse(await text(resolve(root, "plugins/team-ai-coding/.codex-plugin/plugin.json")));
 const claudeManifest = JSON.parse(await text(resolve(root, "plugins/team-ai-coding/.claude-plugin/plugin.json")));
 const claudeMarketplace = JSON.parse(await text(resolve(root, ".claude-plugin/marketplace.json")));
+const cursorManifest = JSON.parse(await text(resolve(root, "plugins/team-ai-coding/.cursor-plugin/plugin.json")));
+const cursorMarketplace = JSON.parse(await text(resolve(root, ".cursor-plugin/marketplace.json")));
 
 if (codexManifest.version !== version) failures.push("Codex plugin version differs from VERSION");
 if (claudeManifest.version !== version) failures.push("Claude plugin version differs from VERSION");
+if (cursorManifest.version !== version) failures.push("Cursor plugin version differs from VERSION");
+if (cursorManifest.skills !== "./cursor-skills/") failures.push("Cursor plugin must use the generated cursor-skills directory");
 if (claudeMarketplace.metadata?.version !== version) failures.push("Claude marketplace version differs from VERSION");
 if (claudeMarketplace.plugins?.[0]?.version !== version) {
   failures.push("Claude marketplace plugin version differs from VERSION");
@@ -173,13 +188,18 @@ if (claudeMarketplace.plugins?.[0]?.version !== version) {
 if (claudeMarketplace.plugins?.[0]?.source !== "./plugins/team-ai-coding") {
   failures.push("Claude marketplace must point to the canonical plugin");
 }
+if (cursorMarketplace.metadata?.version !== version) failures.push("Cursor marketplace version differs from VERSION");
+if (cursorMarketplace.metadata?.pluginRoot !== "plugins") failures.push("Cursor marketplace must point to plugins as its root");
+if (cursorMarketplace.plugins?.[0]?.name !== "team-ai-coding" || cursorMarketplace.plugins?.[0]?.source !== "team-ai-coding") {
+  failures.push("Cursor marketplace must point to the canonical plugin");
+}
 
 const pluginPath = resolve(root, "plugins/team-ai-coding");
 const releaseManifest = {
   suite: "team-ai-coding",
   distribution: "plugin",
   version,
-  releaseStatus: "unreleased",
+  releaseStatus: "preview",
   marketplaceName: "team-ai-coding",
   plugin: {
     name: "team-ai-coding",
@@ -189,6 +209,10 @@ const releaseManifest = {
   workflow: skillNames.map((name) => "team-ai-coding:" + name),
   supportedHosts: ["codex", "claude-code", "cursor"],
   cursorSkills: skillNames.map((name) => cursorNames[name]),
+  cursorPlugin: {
+    path: "plugins/team-ai-coding/.cursor-plugin/plugin.json",
+    marketplacePath: ".cursor-plugin/marketplace.json"
+  },
   template: {
     canonicalPath: "templates/project",
     sha256: await hashDirectory(templateSource),

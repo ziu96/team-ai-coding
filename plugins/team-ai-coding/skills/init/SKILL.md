@@ -24,7 +24,7 @@ disable-model-invocation: false
 4. 展示最小接入计划：受影响文件、L0/L1/L2 路由、每个冲突的保留/合并/替换选项。
 5. 等待用户对目标路径和列出的写入操作作出明确确认。只要求预览时保持只读。
 6. 确认后只实施被批准的操作；保留业务代码和团队已有的专有规则。
-7. 回读写入结果，报告创建项、保留项、未决项，以及项目事实仍需负责人填写的内容。
+7. 回读写入结果，报告创建项、保留项、未决项，以及项目事实仍需负责人填写的内容。对于 Cursor，明确指出 L0/L1/L2 位于根 `AGENTS.md` 和 `.cursor/rules/00-team-foundation.mdc`，而不是 Plugin 面板或某个全局设置中。
 
 ## 接入验收
 
@@ -33,3 +33,5 @@ disable-model-invocation: false
 - `openspec/changes/_template/` 至少含 proposal、tasks、validation；
 - `.ai-team/foundation.json` 记录实际模板版本；
 - 没有安装、启用或限制任何成员个人 Skill、MCP、插件或工具。
+
+若用户保留了冲突文件，或只要求预览而未确认写入，不能称为“初始化完成”。必须列出缺失的精确路径，并说明该项目尚未获得基座的 L0/L1/L2 路由。

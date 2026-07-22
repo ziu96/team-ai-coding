@@ -12,7 +12,7 @@
 
 每次发布应有明确版本号、变更摘要、兼容性说明与升级影响。发布仓库可以托管在团队 GitHub 组织中，作为模板和各 App 插件的共同来源。
 
-本仓库的 `VERSION`、`release-manifest.json` 和 `scripts/build-release-assets.mjs` 只服务基座维护者：后者把 Canonical 模板打包到 Codex/Claude 与 Cursor 的发布目录，并检查三端镜像、版本和哈希是否一致。它不是成员项目的 Runtime、CLI 或日常工作流。
+本仓库的 `VERSION`、`release-manifest.json` 和 `scripts/build-release-assets.mjs` 只服务基座维护者：后者把 Canonical 模板打包到 Codex、Claude Code 与 Cursor Plugin 的发布目录，并检查三端镜像、版本和哈希是否一致。它不是成员项目的 Runtime、CLI 或日常工作流。
 
 ## 更新原则
 
@@ -23,6 +23,13 @@
 5. **可回退**：保留上一个稳定版本和变更说明；出现兼容性问题时回到已验证版本，再决定修复方案。
 
 “无感”指成员日常编码不需要重复配置；不指对项目规则进行无提示、不可审阅的覆盖。
+
+## Cursor 的分发边界
+
+- 推送 GitHub 或创建 Git tag 只发布基座源码；不会自动把插件列入 Cursor 公共 Marketplace。
+- 公共分发需要按 Cursor 的发布流程提交并通过审核；审核通过后，成员才可从 **Customize → Plugins** 搜索安装。
+- 私有团队分发可由 Cursor Team / Enterprise 管理员导入根 `.cursor-plugin/marketplace.json`。团队 Marketplace 的自动刷新、默认安装和 Required 等策略由 Cursor 团队设置控制。
+- 根 `.cursor/skills/` 是 Remote Rule 的兼容镜像，不替代 Plugin 发布。它不能承诺插件级更新、团队安装策略或审核状态。
 
 ## 推荐发布节奏
 
@@ -40,7 +47,7 @@ node scripts/build-release-assets.mjs --write
 node scripts/build-release-assets.mjs --check
 ```
 
-`--write` 只同步本仓库受管的发布镜像；发布前仍应人工审阅 diff、更新 `VERSION` 与 Changelog。V1 不配置 GitHub Actions、CI Gate 或业务仓库门禁。
+`--write` 只同步本仓库受管的发布镜像；发布前仍应人工审阅 diff、更新 `VERSION` 与 Changelog。Cursor 适配发生变化时，还应在本机将插件加载到 Cursor、确认 4 个 Skills 出现并至少执行一次无写入的 `audit`。之后再提交、创建 Git tag，并根据分发方式提交 Cursor 公共审核或导入 Team Marketplace。V1 不配置 GitHub Actions、CI Gate 或业务仓库门禁。
 
 ## 版本变更的判断
 
