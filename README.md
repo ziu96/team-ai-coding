@@ -14,6 +14,69 @@
 
 L2 使用 OpenSpec 风格的产物和目录，但不要求成员安装官方 OpenSpec CLI。它的价值在于留下可审查、可维护的决策与验收记录，而不是把每个任务塞进状态机。
 
+## 安装
+
+本仓库发布到 GitHub 后，将下面的 `<owner>/<repo>` 替换为真实仓库，例如未来的 `mo-ai-coding/team-ai-coding-base`。成员只安装自己使用的 App；不需要三端都装。
+
+| App | 安装后的一次初始化命令 |
+| --- | --- |
+| Codex | `$team-ai-coding:init` |
+| Claude Code | `/team-ai-coding:init` |
+| Cursor | `/team-ai-coding-init` |
+
+### Codex
+
+```bash
+codex plugin marketplace add <owner>/<repo>
+codex plugin add team-ai-coding@mo-ai-coding
+```
+
+在目标业务仓库中新建一个 Codex 任务，然后输入：
+
+```text
+$team-ai-coding:init
+```
+
+### Claude Code
+
+在 Claude Code 中输入：
+
+```text
+/plugin marketplace add <owner>/<repo>
+/plugin install team-ai-coding@mo-ai-coding
+/reload-plugins
+```
+
+然后在目标业务仓库输入：
+
+```text
+/team-ai-coding:init
+```
+
+### Cursor
+
+1. 打开 **Customize → Rules**，选择 **Add Rule → Remote Rule (GitHub)**。
+2. 填入本基座的 GitHub 仓库地址。
+3. 在 Agent 对话输入 `/`，选择 `/team-ai-coding-init`。
+
+Cursor 从发布仓库根目录的 `.cursor/skills/` 发现这些 Skill。
+
+## 一次初始化与日常使用
+
+`init` 会先检查目标仓库已有的 `AGENTS.md`、`CLAUDE.md`、`.cursor/rules/` 和 `openspec/`，展示新增/冲突的文件；只有确认后才写入。它不会改业务代码、安装依赖、限制个人 Skill/MCP，或覆盖已有规则。
+
+初始化成功后，业务仓库将拥有：
+
+```text
+AGENTS.md                    # L0 / L1 / L2 的共同路由
+CLAUDE.md                    # Claude Code 兼容入口
+.cursor/rules/               # Cursor 薄适配
+.ai-team/                    # 基座版本与可选扩展说明
+openspec/                    # 项目事实、路线图与 L2 Spec
+```
+
+之后成员直接正常使用 AI Coding 对话或 Plan 模式即可；项目规则会决定是否直接实现、短计划，或必须先走 L2 Spec 与人工批准。
+
 ## 结构
 
 ```text
@@ -37,12 +100,13 @@ plugins/team-ai-coding/             # Codex + Claude Code 共用的 Canonical Pl
 
 项目内规则才是唯一事实源。三端插件只负责一次初始化、审计和升级体验，不替代项目规则，也不会静默覆盖它们。
 
-## 使用原则
+## 更新
 
-1. 为一个业务仓库执行一次“初始化团队 AI Coding 基座”。
-2. 让使用中的 AI App 写入或合并 `templates/project/` 的内容。
-3. 日常直接使用原有的 AI Coding 对话即可；规则会在项目内被读取。
-4. 更新基座时必须先生成差异、人工确认，再修改业务仓库。
+插件更新只更新辅助工作流，不会静默改业务仓库中的规则。已有项目要升级基座时，使用 `upgrade` 先生成 diff、人工确认后再写入。
+
+- Codex：`codex plugin marketplace upgrade mo-ai-coding`
+- Claude Code：`/plugin marketplace update mo-ai-coding`，再按提示更新插件
+- Cursor：更新 Remote Rule 后使用 `/team-ai-coding-upgrade` 审阅项目规则差异
 
 不包含：Runtime、制品安装器、强制全局 CLI、自动安装 Skill/MCP、hooks、CI/GitHub Gate 或对成员个人工具的限制。
 
