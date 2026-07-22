@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "foundationVersion": "0.2.1",
+  "foundationVersion": "0.2.2",
   "template": "team-ai-coding-base",
   "specMode": "manual-openspec-artifacts",
   "officialOpenSpecCliRequired": false

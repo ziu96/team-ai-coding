@@ -1,7 +1,7 @@
 {
   "name": "team-ai-coding",
   "displayName": "Team AI Coding",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "团队 AI Coding 基座：初始化、审计、可确认升级和 L2 Spec 起草。无 hooks、MCP、可执行运行时或自动写入。",
   "author": {
     "name": "Ziu"

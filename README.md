@@ -71,15 +71,16 @@ https://github.com/ziu96/team-ai-coding.git
 
 本仓库同时提供官方 Cursor Plugin 包和兼容用的 Remote Rule 镜像。**Plugin 是正式主路径**：安装后即携带一条始终应用的 L0/L1/L2 通用路由；项目内 `AGENTS.md`、`.cursor/rules/` 与 `openspec/` 则是业务仓库的完整事实来源。
 
-1. **Cursor Team / Enterprise**：由管理员在 Dashboard → Plugins 中导入本仓库的 `.cursor-plugin/marketplace.json`，再选择安装模式。成员会在 **Customize → Plugins** 看到 `Team AI Coding`。
-2. **Cursor 公共 Marketplace**：在 Cursor 审核上架后，成员直接在 **Customize → Plugins** 搜索并安装 `Team AI Coding`。
-3. 安装后在 Agent 对话输入 `/`，选择 `/team-ai-coding-init`。
+1. **个人或当前项目直接安装（推荐试用）**：进入 **Settings → Customize → Plugins**，在 **Search or Paste Link** 粘贴 `https://github.com/ziu96/team-ai-coding`，选择 `Team AI Coding` 后点 **Add to Cursor**。`Project` 只用于当前仓库；`User` 用于你本机的多个仓库。
+2. **Cursor Team / Enterprise**：由管理员在 Dashboard → Plugins 中导入本仓库的 `.cursor-plugin/marketplace.json`，再选择安装模式。成员会在 **Customize → Plugins** 看到 `Team AI Coding`。
+3. **Cursor 公共 Marketplace**：在 Cursor 审核上架后，成员直接在 **Customize → Plugins** 搜索并安装 `Team AI Coding`。
+4. 成功后应看到 **Skills 4** 和 **Rules 1 / 00-team-foundation**；在目标业务仓库的新 Agent 对话输入 `/`，选择 `/team-ai-coding-init`。
 
-公开 GitHub 仓库不会自动出现在 Cursor 公共 Marketplace；公开分发仍需要 Cursor 审核。若团队暂时没有 Team Marketplace 且插件尚未上架，可在 **Customize → Rules** 使用 GitHub Remote Rule；根 `.cursor/skills/` 会继续提供同名 Skill，但它只是兼容兜底，不是主分发方式。
+公开 GitHub 仓库不会自动出现在 Cursor 公共 Marketplace；公开分发仍需要 Cursor 审核。直接 GitHub 安装适合个人或项目试用；团队统一安装应使用 Team Marketplace。根 `.cursor/skills/` 仍是 Remote Rule 兼容兜底，不是主分发方式。
 
 ## 一次初始化与日常使用
 
-`init` 会先检查目标仓库已有的 `AGENTS.md`、`CLAUDE.md`、`.cursor/rules/` 和 `openspec/`，展示新增/冲突的文件；只有确认后才写入。它不会改业务代码、安装依赖、限制个人 Skill/MCP，或覆盖已有规则。
+`init` 会先检查目标仓库已有的 `AGENTS.md`、`CLAUDE.md`、`.cursor/rules/` 和 `openspec/`，展示新增/冲突的文件；只有确认后才写入。核心接入完成后，它会单独询问是否根据仓库已有资料补全 `openspec/project.md` 与 `openspec/roadmap.md`；同意后仍会先展示来源和拟写内容，再次确认才写入。跳过不影响 L0/L1/L2 使用。它不会改业务代码、安装依赖、限制个人 Skill/MCP，或覆盖已有规则。
 
 在 Cursor 中，安装的 Plugin 会立即提供通用 L0/L1/L2 路由，但这不代表项目已经接入。完成确认后的 init 会把完整规则写入项目根 `AGENTS.md`，并在 `.cursor/rules/00-team-foundation.mdc` 留下可版本管理的入口；若这些路径缺失，说明项目尚未完成接入。
 
@@ -136,4 +137,4 @@ plugins/team-ai-coding/             # 三端共用的 Canonical Plugin
 
 ## 当前状态
 
-当前版本为 `0.2.1`，发布状态为 preview：Cursor Plugin 已带始终应用的 L0/L1/L2 路由；公共 Cursor Marketplace 尚待提交与审核。发布前仍应在 Garden Helper 这类 PRD/原型阶段仓库执行一次初始化和 L0/L1/L2 路由演练，再决定是否需要把官方 OpenSpec CLI 作为维护者可选校验工具。
+当前版本为 `0.2.2`，发布状态为 preview：Cursor Plugin 已带始终应用的 L0/L1/L2 路由；公共 Cursor Marketplace 尚待提交与审核。发布前仍应在 Garden Helper 这类 PRD/原型阶段仓库执行一次初始化和 L0/L1/L2 路由演练，再决定是否需要把官方 OpenSpec CLI 作为维护者可选校验工具。
